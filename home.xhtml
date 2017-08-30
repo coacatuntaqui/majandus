@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<ui:composition template="templates/cliente.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <h:form>
+            <p:panelGrid styleClass="panelGridCenter" rendered="#{datosCliente.datos}" style="width: 100%">
+                <f:facet name="header">
+                    <p:row>
+                        <p:column colspan="6">#{lang.cliDatos}</p:column>
+                    </p:row>
+                </f:facet>
+                <p:row>
+                    <p:column styleClass="ui-datatable-odd">#{lang.cedula}</p:column>
+                    <p:column colspan="5">#{datosCliente.codigo}</p:column>
+                </p:row>
+                <p:row>
+                    <p:column styleClass="ui-datatable-odd">#{lang.nombres}</p:column>
+                    <p:column colspan="5">#{datosCliente.apellidos} #{datosCliente.nombres}</p:column>
+                </p:row>
+                <p:row>
+                    <p:column styleClass="ui-datatable-odd">#{lang.direccion}</p:column>
+                    <p:column colspan="5">#{datosCliente.direccion}</p:column>
+                </p:row>
+                <p:row>
+                    <p:column styleClass="ui-datatable-odd">#{lang.telefono}</p:column>
+                    <p:column>#{datosCliente.telefono}</p:column>
+                    <p:column styleClass="ui-datatable-odd">#{lang.celular}</p:column>
+                    <p:column>#{datosCliente.celular}</p:column>
+                    <p:column styleClass="ui-datatable-odd">#{lang.email}</p:column>
+                    <p:column>#{datosCliente.email}</p:column>
+                </p:row>
+                <p:row>
+                    <p:column styleClass="ui-datatable-odd">#{lang.genero}</p:column>
+                    <p:column>#{datosCliente.ngenero}</p:column>
+                    <p:column styleClass="ui-datatable-odd">#{lang.fnacimiento}</p:column>
+                    <p:column>#{datosCliente.fnacimiento}</p:column>
+                    <p:column styleClass="ui-datatable-odd">#{lang.estcivil}</p:column>
+                    <p:column>#{datosCliente.nestcivil}</p:column>
+                </p:row>
+            </p:panelGrid>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

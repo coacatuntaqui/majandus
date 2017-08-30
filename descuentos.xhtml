@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<ui:composition template="templates/cliente.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <h:form>
+            <p:dataTable id="dtDescuentos" var="descuentos" value="#{datosCliente.descuentos}" reflow="true" rows="#{lang.nroFilas}" paginator="true" paginatorPosition="bottom" tableStyle="table-layout: auto">
+                <f:facet name="header">#{lang.desRepCancelados}</f:facet>
+                <p:column headerText="#{lang.codigo}" styleClass="colcenter">
+                    <h:outputText value="#{descuentos.descuento}"/>
+                </p:column>
+                <p:column headerText="#{lang.descrip}" styleClass="colleft" width="40%">
+                    <h:outputText value="#{descuentos.descrip}"/>
+                </p:column>
+                <p:column headerText="#{lang.valor}" styleClass="colright">
+                    <h:outputText value="#{descuentos.valor}">
+                        <f:convertNumber type="currency" currencySymbol="$" maxFractionDigits="2"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="#{lang.estado}" styleClass="colcenter">
+                    <h:outputText value="#{descuentos.estado}"/>
+                </p:column>
+                <p:column headerText="#{lang.fcancela}" styleClass="colcenter">
+                    <h:outputText value="#{descuentos.fcancela}"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

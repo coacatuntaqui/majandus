@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<ui:composition template="templates/cliente.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <h:form>
+            <p:dataTable id="dtCuenta" var="cuenta" value="#{cuentaCliente}" rendered="#{cuentaCliente.datos}" reflow="true" tableStyle="table-layout: auto">
+                <f:facet name="header">#{lang.cueDatos}</f:facet>
+                <p:column headerText="#{lang.numero}" styleClass="colcenter">
+                    <h:outputText value="#{cuenta.codigo}" />
+                </p:column>
+                <p:column headerText="#{lang.cliente}" styleClass="colcenter">
+                    <h:outputText value="#{cuenta.ncliente}" />
+                </p:column>
+                <p:column headerText="#{lang.descrip}" styleClass="colcenter">
+                    <h:outputText value="#{cuenta.nproducto}" />
+                </p:column>
+                <p:column headerText="#{lang.fingreso}" styleClass="colcenter">
+                    <h:outputText value="#{cuenta.fingreso}" />
+                </p:column>
+                <p:column headerText="#{lang.dispon}" styleClass="colcenter">
+                    <h:outputText value="$ #{cuenta.dispon}" />
+                </p:column>
+                <p:column headerText="#{lang.estado}" styleClass="colcenter">
+                    <h:outputText value="#{cuenta.estado}" />
+                </p:column>
+            </p:dataTable>
+            
+            <p:dataTable id="dtMovimientos" var="movimientos" value="#{cuentaCliente.movimientos}" reflow="true" rows="#{lang.nroFilas}" paginator="true" paginatorPosition="bottom" tableStyle="table-layout: auto">
+                <f:facet name="header">#{lang.cueRepMovimientos}</f:facet>
+                <p:column headerText="#{lang.numero}" styleClass="colcenter">
+                    <h:outputText value="#{movimientos.numero}" />
+                </p:column>
+                <p:column headerText="#{lang.fecha}" styleClass="colcenter">
+                    <h:outputText value="#{movimientos.fecha}" />
+                </p:column>
+                <p:column headerText="#{lang.descrip}" styleClass="colleft">
+                    <h:outputText value="#{movimientos.tipo}" />
+                </p:column>
+                <p:column headerText="#{lang.valor}" styleClass="colright">
+                    <h:outputText value="#{movimientos.valor}">
+                        <f:convertNumber type="currency" currencySymbol="$ " maxFractionDigits="2"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="#{lang.saldo}" styleClass="colright">
+                    <h:outputText value="#{movimientos.saldo}">
+                        <f:convertNumber type="currency" currencySymbol="$ " maxFractionDigits="2"/>
+                    </h:outputText>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>

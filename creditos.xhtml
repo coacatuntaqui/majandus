@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<ui:composition template="templates/cliente.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <h:form>
+            <p:dataTable id="dtCreditos" var="creditos" value="#{datosCliente.creditos}" reflow="true" rows="#{lang.nroFilas}" paginator="true" paginatorPosition="bottom" tableStyle="table-layout: auto">
+                <f:facet name="header">#{lang.creRepVigentes}</f:facet>
+                <p:column headerText="#{lang.numero}" styleClass="colcenter">
+                    <h:outputText value="#{creditos.codigo}"/>
+                </p:column>
+                <p:column headerText="#{lang.descrip}" styleClass="colleft">
+                    <h:outputText value="#{creditos.ncredito}"/>
+                </p:column>
+                <p:column headerText="#{lang.fingreso}" styleClass="colcenter">
+                    <h:outputText value="#{creditos.fingreso}"/>
+                </p:column>
+                <p:column headerText="#{lang.monto}" styleClass="colright">
+                    <h:outputText value="#{creditos.monto}">
+                        <f:convertNumber type="currency" currencySymbol="$" maxFractionDigits="2"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="#{lang.cuotas}" styleClass="colcenter">
+                    <h:outputText value="#{creditos.nrocuotas}"/>
+                </p:column>
+                <p:column headerText="#{lang.tasaint}" styleClass="colcenter">
+                    <h:outputText value="#{creditos.tasaint}">
+                        <f:convertNumber type="percent"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="#{lang.estado}" styleClass="colcenter">
+                    <h:outputText value="#{creditos.estado}"/>
+                </p:column>
+                <p:column headerText="#{lang.reporte}" styleClass="colcenter">
+                    <p:commandButton action="credito" icon="ui-icon-search" title="View">
+                        <f:setPropertyActionListener value="#{creditos}" target="#{datosCliente.credito}" />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

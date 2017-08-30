@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<ui:composition template="templates/cliente.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <h:form>
+            <p:dataTable id="dtCuentas" var="cuentas" value="#{datosCliente.cuentas}" reflow="true" tableStyle="table-layout: auto">
+                <f:facet name="header">#{lang.cueRepActivas}</f:facet>
+                <p:column headerText="#{lang.numero}" styleClass="colcenter">
+                    <h:outputText value="#{cuentas.codigo}"/>
+                </p:column>
+                <p:column headerText="#{lang.fingreso}" styleClass="colcenter">
+                    <h:outputText value="#{cuentas.fingreso}"/>
+                </p:column>
+                <p:column headerText="#{lang.descrip}" styleClass="colleft">
+                    <h:outputText value="#{cuentas.nproducto}"/>
+                </p:column>
+                <p:column headerText="#{lang.dispon}" styleClass="colright">
+                    <h:outputText value="#{cuentas.dispon}">
+                        <f:convertNumber type="currency" currencySymbol="$ " maxFractionDigits="2"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="#{lang.estado}" styleClass="colcenter">
+                    <h:outputText value="#{cuentas.estado}" styleClass="colcenter"/>
+                </p:column>
+                <p:column headerText="#{lang.reporte}" styleClass="colcenter">
+                    <p:commandButton action="cuenta" icon="ui-icon-search" title="View">
+                        <f:setPropertyActionListener value="#{cuentas}" target="#{datosCliente.cuenta}" />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>

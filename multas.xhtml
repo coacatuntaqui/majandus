@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<ui:composition template="templates/cliente.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <h:form>
+            <p:dataTable id="dtMultas" var="multas" value="#{datosCliente.multas}" reflow="true" rows="#{lang.nroFilas}" paginator="true" paginatorPosition="bottom" tableStyle="table-layout: auto">
+                <f:facet name="header">#{lang.mulRepVigentes}</f:facet>
+                <p:column headerText="#{lang.codigo}" styleClass="colcenter">
+                    <h:outputText value="#{multas.codigo}"/>
+                </p:column>
+                <p:column headerText="#{lang.fingreso}" styleClass="colcenter">
+                    <h:outputText value="#{multas.fingreso}"/>
+                </p:column>
+                <p:column headerText="#{lang.descrip}" styleClass="colleft">
+                    <h:outputText value="#{multas.descrip}"/>
+                </p:column>
+                <p:column headerText="#{lang.valor}" styleClass="colright">
+                    <h:outputText value="#{multas.valor}">
+                        <f:convertNumber type="currency" currencySymbol="$ " maxFractionDigits="2"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="#{lang.estado}" styleClass="colcenter">
+                    <h:outputText value="#{multas.estado}"/>
+                </p:column>
+                <p:column headerText="#{lang.fcancela}" styleClass="colcenter">
+                    <h:outputText value="#{multas.fcancela}"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
+

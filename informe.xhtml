@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<ui:composition template="templates/cliente.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <h:form>
+            <p:dataTable id="dtDeudas" var="deudas" value="#{datosCliente.deudas}">
+                <f:facet name="header">#{lang.repValores}</f:facet>
+                <p:column headerText="#{lang.aportes}" styleClass="colcenter" width="25%">
+                    <h:outputText value="#{deudas.aportes}"/>
+                </p:column>
+                <p:column headerText="#{lang.creditos}" styleClass="colcenter" width="25%">
+                    <h:outputText value="#{deudas.creditos}"/>
+                </p:column>
+                <p:column headerText="#{lang.descuentos}" styleClass="colcenter" width="25%">
+                    <h:outputText value="#{deudas.descuentos}"/>
+                </p:column>
+                <p:column headerText="#{lang.multas}" styleClass="colcenter" width="25%">
+                    <h:outputText value="#{deudas.multas}"/>
+                </p:column>
+                <p:column headerText="#{lang.total}" styleClass="colcenter" width="25%">
+                    <h:outputText value="#{deudas.aportes + deudas.creditos + deudas.descuentos + deudas.multas}"/>
+                </p:column>
+            </p:dataTable>
+            <p:dataTable id="dtIngresos" var="ingresos" value="#{balance.ingresos}">
+                <f:facet name="header">#{lang.repIngresos}</f:facet>
+                <p:column headerText="#{lang.codigo}" styleClass="colcenter" width="25%">
+                    <h:outputText value="#{ingresos.codigo}"/>
+                </p:column>
+                <p:column headerText="#{lang.descrip}" styleClass="colleft" width="50%">
+                    <h:outputText value="#{ingresos.descrip}"/>
+                </p:column>
+                <p:column headerText="#{lang.saldo}" width="25%">
+                    <h:outputText value="#{ingresos.saldo}">
+                        <f:convertNumber type="currency" currencySymbol="$ " maxFractionDigits="2"/>
+                    </h:outputText>
+                </p:column>
+            </p:dataTable>
+            <p:dataTable id="dtEgresos" var="egresos" value="#{balance.egresos}">
+                <f:facet name="header">#{lang.repEgresos}</f:facet>
+                <p:column headerText="#{lang.codigo}" styleClass="colcenter" width="25%">
+                    <h:outputText value="#{egresos.codigo}"/>
+                </p:column>
+                <p:column headerText="#{lang.descrip}" styleClass="colleft" width="50%">
+                    <h:outputText value="#{egresos.descrip}"/>
+                </p:column>
+                <p:column headerText="#{lang.saldo}" width="25%">
+                    <h:outputText value="#{egresos.saldo}">
+                        <f:convertNumber type="currency" currencySymbol="$ " maxFractionDigits="2"/>
+                    </h:outputText>
+                </p:column>
+            </p:dataTable>
+            <p:dataTable id="dtCobrar" var="cobrar" value="#{balance.cobrar}">
+                <f:facet name="header">#{lang.repCobrar}</f:facet>
+                <p:column headerText="#{lang.codigo}" styleClass="colcenter" width="25%">
+                    <h:outputText value="#{cobrar.codigo}"/>
+                </p:column>
+                <p:column headerText="#{lang.descrip}" styleClass="colleft" width="50%">
+                    <h:outputText value="#{cobrar.descrip}"/>
+                </p:column>
+                <p:column headerText="#{lang.saldo}" width="25%">
+                    <h:outputText value="#{cobrar.saldo}">
+                        <f:convertNumber type="currency" currencySymbol="$ " maxFractionDigits="2"/>
+                    </h:outputText>
+                </p:column>
+            </p:dataTable>
+            <p:dataTable id="dtResumen" var="resumen" value="#{balance.resumen}">
+                <f:facet name="header">#{lang.repResumen}</f:facet>
+                <p:column headerText="#{lang.codigo}" styleClass="colcenter" width="25%">
+                    <h:outputText value="#{resumen.codigo}"/>
+                </p:column>
+                <p:column headerText="#{lang.descrip}" styleClass="colleft" width="50%">
+                    <h:outputText value="#{resumen.descrip}"/>
+                </p:column>
+                <p:column headerText="#{lang.saldo}" width="25%">
+                    <h:outputText value="#{resumen.saldo}">
+                        <f:convertNumber type="currency" currencySymbol="$ " maxFractionDigits="2"/>
+                    </h:outputText>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

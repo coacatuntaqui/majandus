@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<ui:composition template="templates/cliente.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <h:form>
+            <p:dataTable id="dtCredito" var="credito" value="#{creditoCliente}" rendered="#{creditoCliente.datos}" reflow="true" tableStyle="table-layout: auto">
+                <f:facet name="header">#{lang.creDatos}</f:facet>
+                <p:column headerText="#{lang.numero}" styleClass="colcenter">
+                    <h:outputText value="#{credito.codigo}" />
+                </p:column>
+                <p:column headerText="#{lang.cliente}" styleClass="colcenter">
+                    <h:outputText value="#{credito.ncliente}" />
+                </p:column>
+                <p:column headerText="#{lang.tipo}" styleClass="colcenter">
+                    <h:outputText value="#{credito.ncredito}" />
+                </p:column>
+                <p:column headerText="#{lang.monto}" styleClass="colcenter">
+                    <h:outputText value="$ #{credito.monto}" />
+                </p:column>
+                <p:column headerText="#{lang.cuotas}" styleClass="colcenter">
+                    <h:outputText value="#{credito.nrocuotas}" />
+                </p:column>
+                <p:column headerText="#{lang.tasaint}" styleClass="colcenter">
+                    <h:outputText value="#{credito.tasaint}">
+                        <f:convertNumber type="percent"/>
+                    </h:outputText>
+                </p:column>
+            </p:dataTable>
+            <p:dataTable id="dtCuotas" var="cuotas" value="#{creditoCliente.cuotas}" reflow="true" tableStyle="table-layout: auto">
+                <f:facet name="header">#{lang.creCuotas}</f:facet>
+                <p:column headerText="#{lang.numero}" styleClass="colcenter">
+                    <h:outputText value="#{cuotas.numero}" />
+                </p:column>
+                <p:column headerText="#{lang.fvence}" styleClass="colcenter">
+                    <h:outputText value="#{cuotas.fvence}" />
+                </p:column>
+                <p:column headerText="#{lang.capital}" styleClass="colcenter">
+                    <h:outputText value="#{cuotas.capital}">
+                        <f:convertNumber type="currency" currencySymbol="$" maxFractionDigits="2"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="#{lang.interes}" styleClass="colcenter">
+                    <h:outputText value="#{cuotas.interes}">
+                        <f:convertNumber type="currency" currencySymbol="$" maxFractionDigits="2"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="#{lang.intmora}" styleClass="colcenter">
+                    <h:outputText value="#{cuotas.intmora}">
+                        <f:convertNumber type="currency" currencySymbol="$" maxFractionDigits="2"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="#{lang.valor}" styleClass="colcenter">
+                    <h:outputText value="#{cuotas.capital + cuotas.interes + cuotas.intmora}">
+                        <f:convertNumber type="currency" currencySymbol="$" maxFractionDigits="2"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="#{lang.estado}" styleClass="colcenter">
+                    <h:outputText value="#{cuotas.estado}" />
+                </p:column>
+                <p:column headerText="#{lang.fcancela}" styleClass="colcenter">
+                    <h:outputText value="#{cuotas.fcancela}" />
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>
